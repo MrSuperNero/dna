@@ -1,11 +1,10 @@
 # ordered dictionary practice
-from collections import OrderedDict
 from sys import argv
-from re import search
 from csv import DictReader
 
 if len(argv) != 3:
     print("Usage: ordered_dict.py csv file")
+    exit(1)
 
 csv_file = open(argv[1]) # open csv file
 reader = DictReader(csv_file) # use DictReader to make a list of the dictionary
@@ -35,11 +34,8 @@ for dic in reader:
                 # if false_str is in, then this does not belong to person
                 if false_str in f.read():
                     temp_person = None
-                    f.seek(0)
-
-                # else, false_str is not in and dna_str matches with person
-                else:
-                    f.seek(0)
+                
+                f.seek(0)   # go to beginning of file
 
             # else, if dna_str is not in f.read, then this is not the person and go back to beginning of file
             else:
